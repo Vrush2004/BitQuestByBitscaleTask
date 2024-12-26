@@ -3,12 +3,14 @@
     padding: 0px;
 }
 .header{
+    position: fixed;
     height: 50px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid grey;
 }
 .file-header{
     display: flex;
@@ -19,6 +21,7 @@
     display: flex;
     gap: 15px;
     margin-right: 10px;
+    align-items: center;
 }
 .save-option{
     display: flex;
@@ -29,4 +32,32 @@
     border: 1px red solid;
     padding: 10px;
     border-radius: 50px;
+}
+.silde-icon{
+    position: fixed;
+    margin-top: 50px;
+    width: 50px;
+    height: 90%;
+    border-right: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+}
+.icon-list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.icon-list img{
+    width: 20px;
+}
+.second-header{
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    height: 90px;
+    width: 97%;
+    border-right: 1px solid grey;
 }
