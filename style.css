@@ -10,12 +10,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid #b1afaf;
 }
 .file-header{
     display: flex;
     margin-left: 15px;
     gap: 15px;
+}
+.file-name{
+    color: #6a6a6a;
 }
 .auto-save{
     display: flex;
@@ -23,8 +26,45 @@
     margin-right: 10px;
     align-items: center;
 }
+.toggle-btn{
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.toggle-btn:hover{
+    cursor: pointer;
+}
+#checkbox{
+    visibility: hidden;
+}
+.toggle-label{
+    width: 50px;
+    height: 25px;
+    background-color: rgb(53, 139, 15);
+    display: inline-block;
+    position: relative;
+    border-radius: 60px;
+}
+.toggle-ball{
+    width: 21px;
+    height: 21px;
+    border-radius: 50px;
+    background: white;
+    display: inline-block;
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    transition: all .2s linear;
+}
+.toggle-ball:hover{
+    cursor: pointer;
+}
+#checkbox:checked + .toggle-label .toggle-ball{
+    transform: translateX(20px);
+}
 .save-option{
     display: flex;
+    align-items: center;
     gap: 5px;
 }
 .user{
@@ -38,7 +78,7 @@
     margin-top: 50px;
     width: 50px;
     height: 90%;
-    border-right: 1px solid grey;
+    border-right: 1px solid #b1afaf;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -69,7 +109,7 @@
     left: 50px;
     height: 90px;
     width: 97%;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid #b1afaf;
 }
 .operations-left{
     display: flex;
@@ -81,7 +121,7 @@
     height: 10px;
     align-items: center;
     gap: 10px;
-    border: 1px solid grey;
+    border: 1px solid #b1afaf;
     padding: 15px;
     width: 400px;
     border-radius: 10px;
