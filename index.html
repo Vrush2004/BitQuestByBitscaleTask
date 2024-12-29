@@ -71,9 +71,9 @@
         </div>
     </div>
     <div class="table-container">
-        <table>
+        <table id="dynamic-table">
             <thead>
-                <tr>
+                <tr id="header-row">
                     <th class="fixed-column"></th>
                     <th class="fixed-column"></th>
                     <th id="input-column" class="input">
@@ -97,15 +97,15 @@
                             <img src="./images/stop1.png" alt="">
                         </div>
                     </th>
-                    <th class="input">
-                        <div class="input-column">
+                    <th class="input" id="add-column-header">
+                        <div class="input-column" onclick="openModal()">
                             <i class="fa-solid fa-plus"></i>
                             <p>Add Column</p>
                         </div>
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="table-body">
                 <tr>
                     <td class="fixed-column">1</td>
                     <td class="fixed-column"><img src="./images/stop.png" alt=""></td>
@@ -120,7 +120,7 @@
                     <td>
                         <div class="input-column">
                             <i class="fa-solid fa-plus"></i>
-                            <p>Add Column</p>
+                            <p>Add Row</p>
                         </div>
                     </td>
                     <td></td>
@@ -129,6 +129,13 @@
                 </tr>
             </tbody>
         </table>
+        <div class="modal-overlay" id="modal-overlay"></div>
+            <div class="modal" id="add-column-modal">
+                <h3>Add Column Header</h3>
+                <input type="text" id="column-header-input" placeholder="Enter column header name">
+                <button onclick="addColumn()">Add Column</button>
+                <button onclick="closeModal()">Cancel</button>
+            </div>
     </div>
 
     <script src="script.js"></script>
