@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 *{
+    font-family: "Mulish", serif;
     margin: 0px;
     padding: 0px;
 }
@@ -22,7 +25,7 @@
 }
 .auto-save{
     display: flex;
-    gap: 15px;
+    gap: 25px;
     margin-right: 10px;
     align-items: center;
 }
@@ -69,7 +72,7 @@
 }
 .user{
     color: red;
-    border: 1px red solid;
+    background-color: #ffffcc;
     padding: 10px;
     border-radius: 50px;
 }
@@ -107,7 +110,7 @@
     position: fixed;
     top: 50px;
     left: 50px;
-    height: 90px;
+    height: 80px;
     width: 97%;
     border-bottom: 1px solid #b1afaf;
 }
@@ -129,13 +132,20 @@
 .search-place input{
     border: none;
 }
+input:focus{
+    outline: none;
+    border: none; 
+}
 .op-content{
     display: flex;
     gap: 10px;
     align-items: center;
 }
 .op-content img{
-    width: 20px;
+    width: 15px;
+}
+.op-content p{
+    font-size: 15px;
 }
 .operations-right{
     display: flex;
@@ -167,7 +177,7 @@ table {
     background: white;
     overflow: hidden;
     position: fixed;
-    top: 141px;
+    top: 131px;
     left: 51px;
 }
 thead {
@@ -180,8 +190,7 @@ th, td {
 }
 th {
     font-weight: bold;
-    text-transform: uppercase;
-    font-size: 14px;
+    font-size: 15px;
     color: #555;
 }
 td {
@@ -197,6 +206,31 @@ td {
     width: 20px;
     height: 20px;
     margin: auto 0px;
+}
+.input-column{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    border: none;
+}
+.input-column img{
+    width: 18px;
+    height: 20px;
+}
+#input-column{
+    background-color: #ffffcc;
+}
+.input{
+    min-width: 150px;
+}
+.enrich-comp{
+    display: flex;
+    justify-content: space-between;
+}
+.company{
+    display: flex;
+    gap: 5px;
 }
 tr:nth-child(even) {
     background-color: #f9f9f9;
