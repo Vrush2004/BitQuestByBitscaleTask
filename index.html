@@ -114,19 +114,11 @@
                     <td>Bitscale Evaluation - Account relev...</td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td class="fixed-column">1</td>
-                    <td class="fixed-column"><img src="./images/stop.png" alt=""></td>
-                    <td>Oct 12, 2024 at 14:08 PM</td>
-                    <td>Bitscale Evaluation - Account relev...</td>
-                    <td>Bitscale Evaluation - Account relev...</td>
-                    <td></td>
-                </tr>
-                <tr>
+                <tr id="add-row-button">
                     <td class="fixed-column"></td>
                     <td class="fixed-column"></td>
                     <td>
-                        <div class="input-column">
+                        <div class="input-column" onclick="openDialog()">
                             <i class="fa-solid fa-plus"></i>
                             <p>Add Row</p>
                         </div>
@@ -137,6 +129,7 @@
                 </tr>
             </tbody>
         </table>
+        <!-- Column Dialog Box-->
         <div class="modal-overlay" id="modal-overlay"></div>
             <div class="modal" id="add-column-modal">
                 <h3>Add Column Header</h3>
@@ -145,8 +138,7 @@
                 <button onclick="addColumn()">Add Column</button>
                 <button onclick="closeModal()">Cancel</button>
             </div>
-    </div>
-
+        </div>
     <script src="script.js"></script>
 </body>
 </html>
