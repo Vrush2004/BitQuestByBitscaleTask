@@ -139,6 +139,21 @@
                 <button onclick="closeModal()">Cancel</button>
             </div>
         </div>
+
+    <!-- Row Dialog Box -->
+    <div class="dialog-overlay" id="dialog-overlay"></div>
+    <div class="dialog-box" id="dialog-box">
+        <form id="rowDataForm">
+            <div id="dialog-content">
+                <!-- Inputs will be dynamically added here -->
+            </div>
+            <div class="row-dialog-btn">
+                <button type="button" onclick="submitRowData()" id="submit-btn">Submit</button>
+                <button type="button" onclick="closeDialog()" id="cancel-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
