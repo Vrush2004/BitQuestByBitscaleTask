@@ -224,4 +224,61 @@ document.addEventListener("DOMContentLoaded", function () {
         // Update row count after filtering
         updateRowCount();
     }
+
+    // function for sorting
+    document.querySelector(".op-content").addEventListener("click", handleSort);
+
+    function handleSort(event) {
+        const button = event.currentTarget; // The clicked button (div)
+        const columnIndex = parseInt(button.getAttribute("data-column-index")); // Get the column index to sort
+        const rows = Array.from(tableBody.querySelectorAll("tr"));
+    
+        // Toggle sorting order
+        const isAscending = button.classList.toggle("sort-asc");
+        if (!isAscending) button.classList.toggle("sort-desc");
+    
+        // Sort rows based on the selected column
+        rows.sort((a, b) => {
+            const cellA = a.querySelectorAll("td")[columnIndex].textContent.trim();
+            const cellB = b.querySelectorAll("td")[columnIndex].textContent.trim();
+            return isAscending
+                ? cellA.localeCompare(cellB, undefined, { numeric: true })
+                : cellB.localeCompare(cellA, undefined, { numeric: true });
+        });
+    
+        // Append sorted rows back to the table body
+        rows.forEach(row => tableBody.appendChild(row));
+    
+        // Update the row count (since sorting doesn't change visibility)
+        updateRowCount();
+    }
+    
+
+    // Attach event listener to each header for sorting
+    sortHeaders.forEach(header => header.addEventListener("click", handleSort));
+
+    // Event listener for search input
+    searchInput.addEventListener("input", handleSearch);
+
+    // Initial updates for row and column count
+    updateRowCount();
+    updateColumnCount();
+});
+
+
+// Enrich Button
+document.querySelector(".operations-right button").addEventListener("click", function () {
+    const rows = document.querySelectorAll("#table-body tr");
+
+    rows.forEach(row => {
+        const cells = row.querySelectorAll("td");
+        cells.forEach(cell => {
+            if (cell.textContent.trim() === "") {
+                cell.textContent = "N/A"; // Default value for empty cells
+                cell.style.backgroundColor = "#ffffcc"; // Highlight enriched cells
+            }
+        });
+    });
+
+    alert("Table data enriched successfully!");
 });
