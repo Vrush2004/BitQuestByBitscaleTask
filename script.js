@@ -202,8 +202,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to update column count
     function updateColumnCount() {
-        const allColumns = headerRow.querySelectorAll("th:not(.exclude-column)");
-        columnCountElement.textContent = `${allColumns.length} Columns`;
+        const allColumns = headerRow.querySelectorAll("th");
+        
+        // Exclude the first two columns and the last column
+        const includedColumns = Array.from(allColumns).slice(2, allColumns.length - 1);
+        
+        // Update the column count element
+        columnCountElement.textContent = `${includedColumns.length} Columns`;
     }
 
     // Function to handle search/filtering
@@ -264,7 +269,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateRowCount();
     updateColumnCount();
 });
-
 
 // Enrich Button
 document.querySelector(".operations-right button").addEventListener("click", function () {
