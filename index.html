@@ -41,28 +41,28 @@
         <div class="operations-left">
             <div class="search-place">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search">
+                <input type="text" placeholder="Search" id="search-input">
             </div>
             <div class="op-content">
                 <img src="./images/icon6.png" alt="">
-                <p>1/1 Row</p>
+                <p id="row-count">0/0 Row</p>
             </div>
             <div class="op-content">
                 <img src="./images/icon7.png" alt="">
-                <p>3/3 Column</p>
+                <p id="column-count">0/0 Column</p>
             </div>
             <div class="op-content">
                 <img src="./images/icon8.png" alt="">
                 <p>0 Filter</p>
             </div>
-            <div class="op-content">
+            <div class="op-content" data-column-index="0">
                 <img src="./images/icon9.png" alt="">
                 <p>Sort</p>
             </div>
         </div>
         <div class="operations-right">
             <button>
-                <img src="./images/bright.png" alt="" class="op-img">
+                <img src="./images/bright.png" alt="" class="enrich-img">
                 Enrich
             </button>
             <img src="./images/share.png" alt="" class="op-img icon-hover">
@@ -135,8 +135,10 @@
                 <h3>Add Column Header</h3>
                 <input type="text" id="column-header-input" placeholder="Enter column header name">
                 <div id="row-data-inputs"></div>
-                <button onclick="addColumn()">Add Column</button>
-                <button onclick="closeModal()">Cancel</button>
+                <div class="row-dialog-btn">
+                    <button onclick="addColumn()" style="background-color: rgb(38, 110, 6);">Add Column</button>
+                    <button onclick="closeModal()" style="background-color: red;">Cancel</button>
+                </div>
             </div>
         </div>
 
@@ -148,8 +150,8 @@
                 <!-- Inputs will be dynamically added here -->
             </div>
             <div class="row-dialog-btn">
-                <button type="button" onclick="submitRowData()" id="submit-btn">Submit</button>
-                <button type="button" onclick="closeDialog()" id="cancel-btn">Cancel</button>
+                <button type="button" onclick="submitRowData()" style="background-color: rgb(38, 110, 6);">Submit</button>
+                <button type="button" onclick="closeDialog()" style="background-color: red;">Cancel</button>
             </div>
         </form>
     </div>

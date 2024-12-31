@@ -182,3 +182,46 @@ function submitRowData() {
     closeDialog();
     document.getElementById("rowDataForm").reset();
 }
+
+
+//Search functionality
+document.addEventListener("DOMContentLoaded", function () {
+    const tableBody = document.getElementById("table-body");
+    const headerRow = document.getElementById("header-row");
+    const searchInput = document.getElementById("search-input");
+    const rowCountElement = document.getElementById("row-count");
+    const columnCountElement = document.getElementById("column-count");
+    const sortHeaders = headerRow.querySelectorAll("th"); // Assuming headers are clickable for sorting
+
+    // Function to update row count
+    function updateRowCount() {
+        const allRows = tableBody.querySelectorAll("tr");
+        const visibleRows = Array.from(allRows).filter(row => row.style.display !== "none");
+        rowCountElement.textContent = `${visibleRows.length} / ${allRows.length} Rows`;
+    }
+
+    // Function to update column count
+    function updateColumnCount() {
+        const allColumns = headerRow.querySelectorAll("th:not(.exclude-column)");
+        columnCountElement.textContent = `${allColumns.length} Columns`;
+    }
+
+    // Function to handle search/filtering
+    function handleSearch() {
+        const searchValue = searchInput.value.toLowerCase();
+        const rows = tableBody.querySelectorAll("tr");
+
+        rows.forEach(row => {
+            const cells = Array.from(row.querySelectorAll("td"));
+            const rowText = cells.map(cell => cell.textContent.toLowerCase()).join(" ");
+            if (rowText.includes(searchValue)) {
+                row.style.display = ""; // Show matching row
+            } else {
+                row.style.display = "none"; // Hide non-matching row
+            }
+        });
+
+        // Update row count after filtering
+        updateRowCount();
+    }
+});
