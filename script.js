@@ -302,6 +302,12 @@ document.querySelector(".operations-right .icon-hover[src='./images/share.png']"
 
 // Download Icon
 document.querySelector(".operations-right .icon-hover[src='./images/download.png']").addEventListener("click", function () {
+    // Get the current file name
+    const fileNameElement = document.querySelector(".file-header .file-name");
+    let fileName = fileNameElement.textContent.trim() || "Untitled File"; // Default if empty
+    fileName = fileName.replace(/[^a-zA-Z0-9]/g, "_") + ".csv"; // Sanitize file name and add .csv extension
+
+    // Generate CSV content
     const rows = document.querySelectorAll("table tr");
     let csvContent = "";
 
@@ -311,10 +317,11 @@ document.querySelector(".operations-right .icon-hover[src='./images/download.png
         csvContent += rowData + "\n";
     });
 
+    // Create a downloadable blob
     const blob = new Blob([csvContent], { type: "text/csv" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "table_data.csv";
+    link.download = fileName; // Use dynamic file name
     link.click();
 });
 
@@ -336,9 +343,58 @@ document.querySelector(".file-header .fa-arrow-left").addEventListener("click", 
 });
 
 // 2. Update File Name Dynamically
-function updateFileName(name) {
+document.addEventListener("DOMContentLoaded", function () {
     const fileNameElement = document.querySelector(".file-header .file-name");
-    fileNameElement.textContent = name || "Untitled File";
+
+    // Function to enable editing on double-click
+    fileNameElement.addEventListener("dblclick", function () {
+        fileNameElement.setAttribute("contenteditable", "true");
+        fileNameElement.focus(); // Focus the element for editing
+    });
+
+    // Function to save the updated file name on Enter key or blur
+    function saveFileName() {
+        const newName = fileNameElement.textContent.trim();
+        if (newName === "") {
+            fileNameElement.textContent = "Untitled File"; // Default name if empty
+        }
+        fileNameElement.setAttribute("contenteditable", "false");
+    }
+
+    // Save file name on pressing Enter
+    fileNameElement.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent new line
+            saveFileName();
+        }
+    });
+
+    // Save file name on losing focus (blur event)
+    fileNameElement.addEventListener("blur", saveFileName);
+});
+
+// 3. Auto-Save Toggle Functionality
+let autoSaveInterval;
+
+document.getElementById("checkbox").addEventListener("change", function (event) {
+    if (event.target.checked) {
+        autoSaveInterval = setInterval(() => {
+            autoSaveContent();
+        }, 5000); // Auto-save every 5 seconds
+        alert("Auto-save enabled!");
+    } else {
+        clearInterval(autoSaveInterval);
+        alert("Auto-save disabled!");
+    }
+});
+
+function autoSaveContent() {
+    const fileContent = getFileContent();
+    console.log("Auto-saving file content:", fileContent);
+    // Add your save logic here
 }
 
-updateFileName("");
+function getFileContent() {
+    // Mock function to get file content
+    return "Current file content...";
+}
