@@ -282,3 +282,63 @@ document.querySelector(".operations-right button").addEventListener("click", fun
 
     alert("Table data enriched successfully!");
 });
+
+// Share Icon
+document.querySelector(".operations-right .icon-hover[src='./images/share.png']").addEventListener("click", function () {
+    const shareData = {
+        title: "Shared Table Data",
+        text: "Check out this table data!",
+        url: window.location.href
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData).then(() => {
+            alert("Table data shared successfully!");
+        }).catch(console.error);
+    } else {
+        alert("Sharing not supported in your browser.");
+    }
+});
+
+// Download Icon
+document.querySelector(".operations-right .icon-hover[src='./images/download.png']").addEventListener("click", function () {
+    const rows = document.querySelectorAll("table tr");
+    let csvContent = "";
+
+    rows.forEach(row => {
+        const cells = Array.from(row.querySelectorAll("th, td"));
+        const rowData = cells.map(cell => `"${cell.textContent.trim()}"`).join(",");
+        csvContent += rowData + "\n";
+    });
+
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "table_data.csv";
+    link.click();
+});
+
+// Delete Icon
+document.querySelector(".operations-right .icon-hover[src='./images/delete.png']").addEventListener("click", function () {
+    if (confirm("Are you sure you want to delete all rows?")) {
+        const tableBody = document.getElementById("table-body");
+        tableBody.innerHTML = ""; // Clear all rows
+        updateRowCount(); // Update row count after deletion
+        alert("All rows deleted!");
+    }
+});
+
+// 1. Back Arrow Functionality
+document.querySelector(".file-header .fa-arrow-left").addEventListener("click", function () {
+    if (confirm("Are you sure you want to leave this page? Unsaved changes may be lost.")) {
+        window.history.back();
+    }
+});
+
+// 2. Update File Name Dynamically
+function updateFileName(name) {
+    const fileNameElement = document.querySelector(".file-header .file-name");
+    fileNameElement.textContent = name || "Untitled File";
+}
+
+updateFileName("");
